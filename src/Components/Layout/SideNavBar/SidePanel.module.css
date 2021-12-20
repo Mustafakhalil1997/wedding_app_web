@@ -1,0 +1,99 @@
+.nav_menu_items div {
+  align-self: flex-end;
+  margin: 2rem;
+}
+
+.menu_bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+  cursor: pointer;
+  color: rgb(138, 77, 42);
+}
+
+.nav_menu {
+  background-color: #060b26;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.navbar_toggle span:hover {
+  color: white;
+}
+
+.nav_menu_items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav_menu_items div {
+  align-self: flex-end;
+  margin: 2rem;
+}
+
+.nav_menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav_text {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.1rem;
+  border-radius: 7px;
+}
+
+.nav_text a,
+.nav_text .uploadlist {
+  text-decoration: none;
+  border-radius: 7px;
+  font-size: 1.3rem;
+  height: 3rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: [column-1-start] 20% [column-2-start] 80%;
+  justify-items: center;
+  align-items: center;
+  color: white;
+}
+
+.nav_text .uploadlist {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #060b26;
+}
+
+/* .nav_text span {
+  color: white;
+}
+
+.nav_text span:hover {
+  color: #060b26;
+} */
+
+.nav_text a:hover,
+.nav_text button:hover {
+  /* background-color: #1a83ff; */
+  background: white;
+  color: #060b26;
+}

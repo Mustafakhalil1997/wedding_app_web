@@ -1,0 +1,101 @@
+.uploadfile_view {
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  width: 30vw;
+  height: 30vh;
+  background: #060b26;
+  z-index: 2;
+  border-radius: 3px;
+  text-align: center;
+  transform: translate(-50%);
+  transition: 300ms ease-out;
+}
+
+.showview {
+  /* opacity: 1;
+      transform: translateX(-50%) translateY(0); */
+  animation: openView 0.5s ease-out forwards;
+}
+
+.closeview {
+  /* opacity: 0;
+  transform: translate(-50%, -100%); */
+  animation: closeView 0.5s ease-out forwards;
+}
+
+@keyframes openView {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes closeView {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -30%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+}
+
+.backdrop.active {
+  display: block;
+}
+
+.uploadfile_view input {
+  margin: 1rem 0;
+}
+
+.uploadfile_view div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0.5rem;
+}
+
+.submit_button {
+  padding: 0.4rem 1rem;
+  color: white;
+  background: rgba(87, 87, 194, 0.7);
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+.submit_button:hover {
+  color: white;
+  background: rgba(87, 87, 194, 1);
+}
+
+.close_button {
+  padding: 0.4rem 1rem;
+  color: white;
+  background: rgba(87, 87, 194, 0.7);
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.3rem;
+  border-radius: 4px;
+}

@@ -1,0 +1,16 @@
+.main {
+  margin: 3rem auto;
+  width: 90%;
+  /* max-width: 40rem; */
+}
+
+.background_image {
+  background: url("./images/luxury-ornamental-mandala-design-background-gold-color_1159-5428.jpg")
+    center/cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  filter: blur(5px);
+  top: 0;
+  z-index: -1;
+}

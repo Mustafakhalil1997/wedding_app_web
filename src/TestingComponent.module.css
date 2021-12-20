@@ -1,0 +1,59 @@
+.slideshow {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 50rem;
+  max-width: 50rem;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  padding: 1rem 0;
+  border: 1px solid black;
+}
+
+.slideshowSlider {
+  /* display: flex;
+  flex-direction: row; */
+  white-space: nowrap;
+  transition: ease 1000ms;
+  margin: 0;
+}
+
+.slideWrapper {
+  display: inline-block;
+  height: 150px;
+  width: 25%;
+  padding: 0.2rem;
+}
+
+.slide {
+  height: 100%;
+  width: 100%;
+  /* border-radius: 40px; */
+  /* margin: 0.2rem; */ /* when set the elements don't move the appropriate amount, come back later */
+}
+
+/* removed dots */
+
+/* 
+.slideshowDots {
+  text-align: center;
+}
+
+.slideshowDot {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 15px 7px 0px;
+  background: #c4c4c4;
+} */
+
+/* .testdiv {
+  background: red;
+  width: 50%;
+  height: 20rem;
+  padding: 10px;
+  margin: 10px;
+} */
