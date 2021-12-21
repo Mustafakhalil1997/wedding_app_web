@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import classes from "./UploadList.module.css";
 import HelperList from "./HelperList";
+import { InitializeFirebase } from "./../../../../InitializeFirebase";
+import { getDatabase, push, ref, set } from "firebase/database";
+
+InitializeFirebase();
 
 const UploadList = (props) => {
   // const backdropClickHandler = () => {
@@ -63,32 +67,46 @@ const UploadList = (props) => {
     let i = 0;
 
     fileData.map((invitee) => {
-      inviteeList.push({
-        name: invitee,
-        checkin: false,
-        ispriority: true,
-        time: "",
-      });
+      if (i < fileData.length / 2) {
+        inviteeList.push({
+          name: invitee,
+          checkin: "",
+          ispriority: true,
+        });
+        i++;
+      } else {
+        inviteeList.push({
+          name: invitee,
+          checkin: "",
+          ispriority: false,
+        });
+      }
     });
 
     console.log("inviteeList ", inviteeList);
 
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(inviteeList),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("List added");
-          history.replace("/profile");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    let index = 0;
+    const db = getDatabase();
+    while (index < inviteeList.length) {
+      push(ref(db, "invitees"), inviteeList[index]);
+      index++;
+      // fetch(url, {
+      //   method: "POST",
+      //   body: JSON.stringify(inviteeList),
+      //   headers: {
+      //     "Content-type": "application/json",
+      //   },
+      // })
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       console.log("List added");
+      //       history.replace("/profile");
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    }
   };
 
   const handleClose = () => {
