@@ -4,6 +4,8 @@ import classes from "./UploadList.module.css";
 import HelperList from "./HelperList";
 import { InitializeFirebase } from "./../../../../InitializeFirebase";
 import { getDatabase, push, ref, set } from "firebase/database";
+import { useSelector } from "react-redux";
+import Table from "./../../../../table";
 
 InitializeFirebase();
 
@@ -17,6 +19,7 @@ const UploadList = (props) => {
   // const [isSelected, setIsSelected] = useState(false);
   const [fileData, setFileData] = useState("");
   const [loading, setIsLoading] = useState(false);
+  const [tableList, setTableList] = useState();
   // const [isBackdropOpen, setIsBackdropOpen] = useState(false);
 
   const history = useHistory();
@@ -53,6 +56,33 @@ const UploadList = (props) => {
     // setIsSelected(true);
   };
 
+  useEffect(() => {
+    fetch(
+      "https://weddingproject2-ce55f-default-rtdb.firebaseio.com/tables.json"
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data[Object.keys(data)[0]].ispriority);
+        const loadedTables = [];
+        for (const key in data) {
+          const number = data[key].number;
+          const isPriority = data[key].ispriority;
+          const listPeople = data[key].listPeople;
+          const full = data[key].full;
+
+          loadedTables.push(
+            new Table(key, number, isPriority, full, listPeople)
+          );
+        }
+        setTableList(loadedTables);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -66,12 +96,52 @@ const UploadList = (props) => {
     const inviteeList = [];
     let i = 0;
 
+    // fileData.map((invitee) => {
+    //   const { listPeople, isPriority } = tableList[tableIndex];
+    //   if (i < fileData.length / 2) {
+    //     if (isPriority) {
+    //       if (listPeople.length < 10) {
+    //         inviteeList.push({
+    //           name: invitee,
+    //           checkin: "",
+    //           ispriority: true,
+    //           image: null,
+    //         });
+    //         tableList[tableIndex].listPeople.push(invitee);
+    //       } else {
+    //         tableIndex++;
+    //       }
+    //     } else {
+    //       tableIndex++;
+    //     }
+    //   }
+    //   if (i < fileData.length / 2) {
+    //     if (listPeople.length < 10) {
+    //       inviteeList.push({
+    //         name: invitee,
+    //         checkin: "",
+    //         ispriority: true,
+    //         image: null,
+    //       });
+    //     }
+    //     i++;
+    //   } else {
+    //     inviteeList.push({
+    //       name: invitee,
+    //       checkin: "",
+    //       ispriority: false,
+    //       image: null,
+    //     });
+    //   }
+    // });
+
     fileData.map((invitee) => {
       if (i < fileData.length / 2) {
         inviteeList.push({
           name: invitee,
           checkin: "",
           ispriority: true,
+          image: null,
         });
         i++;
       } else {
@@ -79,6 +149,7 @@ const UploadList = (props) => {
           name: invitee,
           checkin: "",
           ispriority: false,
+          image: null,
         });
       }
     });
